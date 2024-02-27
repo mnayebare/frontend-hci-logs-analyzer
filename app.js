@@ -40,7 +40,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 var router = express.Router();
 
 
-
 //
 //set the view engine to html
 //
@@ -52,6 +51,7 @@ app.get('/', function(req, res) {
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);
+console.log('Server is running on port ' + port);
 
 
 //
