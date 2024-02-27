@@ -1,0 +1,43 @@
+{
+    "name": "LogAnalyzer",
+    "engines": {
+        "node": "16.20.2",
+        "npm": "8.19.4"
+    },
+    "version": "1.0.0",
+    "description": "Analyzing the Nginx Access Log with LLms",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "mocha --require babel-core/register --watch-extensions js \"{,!(node_modules)/**/}*.test.js\"",
+        "start:dev": "nodemon server/src/index.js --exec babel-node",
+        "build": "babel ./server/src -d ./server/dist"
+    },
+    "directories": {
+        "test": "test"
+    },
+    "author": "Micheal Nayebare",
+    "license": "ISC",
+    "dependencies": {
+        "angular": "^1.7.2",
+        "assertthat": "^2.0.3",
+        "auth0-api-jwt-rsa-validation": "0.0.1",
+        "body-parser": "^1.18.3",
+        "chai": "^4.1.2",
+        "chai-http": "^3.0.0",
+        "ejs": "^2.6.1",
+        "express": "^4.16.2",
+        "express-error-handler": "^1.1.0",
+        "express-jwt": "^5.3.1",
+        "express-session": "^1.15.6",
+        "jsonwebtoken": "^8.3.0",
+        "moment": "^2.22.2",
+        "morgan": "^1.9.1",
+        "neo4j-driver": "*",
+        "nodemailer": "^4.6.8",
+        "nodemon": "^3.1.0",
+        "pg": "^6.1.0",
+        "prettier": "^1.16.4",
+        "swagger-ui-express": "^4.0.2"
+    }
+}
