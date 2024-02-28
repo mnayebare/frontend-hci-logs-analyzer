@@ -13,10 +13,10 @@ async function fetchData() {
 
     for (let i = 0; i < log_data.length; i++) {
       table += "<tr>";
-      table += "<td>" + log_data[i].process_id + "</td>";
-      table += "<td>" + log_data[i].timestamp + "</td>";
-      table += "<td>" + log_data[i].log_level + "</td>";
-      table += "<td><button class='border-info' onclick='sendPrompt(\"" + log_data[i].error_message + "\")'>" + log_data[i].error_message + "</button></td>";
+      table += "<td class='result_link'>" + log_data[i].process_id + "</td>";
+      table += "<td class='result_link'>" + log_data[i].timestamp + "</td>";
+      table += "<td class='result_link'>" + log_data[i].log_level + "</td>";
+      table += "<td><button id='result_button' class='border-info' onclick='sendPrompt(\"" + log_data[i].error_message + "\")'>" + log_data[i].error_message + "</button></td>";
       table += "</tr>";
     }
 
