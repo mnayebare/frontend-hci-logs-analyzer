@@ -1,3 +1,9 @@
+
+// This code demonstrates how to use the OpenAI API to generate chat completions.
+//  This opencode https://github.com/gopinav/ai/blob/main/examples/javascript-vanilla/stream-response.js
+// There some slight modifications to the code to fit the current project but credit is given to the original author
+// The generated completions are received as a stream of data from the API and the
+
 /**
  * This code demonstrates how to use the OpenAI API to generate chat completions.
  * The generated completions are received as a stream of data from the API and the
@@ -9,8 +15,8 @@
 async function sendPrompt(prompt) {
 
   // define the variables
-  const API_URL = "https://api.openai.com/v1/chat/completions";
-  const API_KEY = "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";
+  const API_URL = "https://api.openai.com/v1/chat/completions"; //always use the latest version of the API
+  const API_KEY = "";
 
   const result_button = document.getElementById("result_button");
   const gptRepsonse = document.getElementById("gptResponse");
@@ -24,7 +30,7 @@ async function sendPrompt(prompt) {
 
   // Disable the generate button and enable the stop button
   result_button.disabled = true;
-  gptRepsonse.innerText = "Generating...";
+  gptRepsonse.innerText = "Generating response.........";
 
   // Create a new AbortController instance
   controller = new AbortController();
@@ -41,7 +47,7 @@ async function sendPrompt(prompt) {
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: cot_prompt }],
-        max_tokens: 100,
+        max_tokens: 150,
         stream: true, // For streaming responses
       }),
       signal, // Pass the signal to the fetch request
@@ -71,7 +77,19 @@ async function sendPrompt(prompt) {
         const { content } = delta;
         // Update the UI with the new content
         if (content) {
-          gptRepsonse.innerText += content;
+          // gptRepsonse.innerText += content;
+
+          // Create a hyperlink with the content
+          const anchor = document.createElement("a");
+          anchor.innerText = content; 
+          // Set additional attributes
+          anchor.setAttribute("style", "cursor: pointer;");
+          anchor.setAttribute("onClick", "furtherInspection()");
+          anchor.classList.add("whitespace-pre-line", "hover");
+          anchor.setAttribute("id", "selectedResponse");
+          // Append the anchor to the gptRepsonse element
+          gptRepsonse.appendChild(anchor);
+       
         }
       }
     }
@@ -84,15 +102,7 @@ async function sendPrompt(prompt) {
       gptRepsonse.innerText = "Error occurred while generating.";
     }
   } finally {
-    result_button.disabled = true;
+    result_button.disabled = false;
     controller = null; // Reset the AbortController instance
-  }
-};
-
-const stop = () => {
-  // Abort the fetch request by calling abort() on the AbortController instance
-  if (controller) {
-    controller.abort();
-    controller = null;
   }
 };

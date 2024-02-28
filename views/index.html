@@ -43,9 +43,19 @@
 
         <!---creating space for the llm respons-->
         <h3>LLm response</h3>
-        <div class="my-3 p-3 bg-white rounded box-shadow border" >
-            <p id="gptResponse" class="whitespace-pre-line"></p>
+        <div class="bg-white rounded box-shadow  border border-success bg-light" id="gptResponse" >
+    
         </div>
+
+        <!-- futher inspection into down-->
+        <div class="container col-lg" style="width: 100%;">
+            <h3 class="text-center">Further Inspection</h3>
+            <hr />
+            <div class="my-3 p-3 bg-white rounded box-shadow  border border-warning bg-light border" >
+                <a style="cursor: pointer;"  id="gptFurtherResponse" class="whitespace-pre-line hover p-2 d-grid gap-3 "></a>
+            </div>
+            </div>
+
     </div>
     
 </body>
@@ -58,4 +68,5 @@
 </script>
 <script src="/js/popup.js"></script>
 <script src="/js/gpt.js"></script>
+<script src="/js/furtherInspection.js"></script>
 </html>

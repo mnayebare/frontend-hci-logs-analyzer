@@ -1,4 +1,6 @@
 // This file is used to fetch the data from the API and display it in the popup.html file
+// under the linux system you find the logs in the /var/log/nginx/error.log
+//https://www.digitalocean.com/community/tutorials/nginx-access-logs-error-logs
 async function fetchData() {
   try {
     const res = await fetch("http://127.0.0.1:8000/api/v1/nginxlogs");
@@ -23,7 +25,7 @@ async function fetchData() {
     table += "</table>";
     $('.data-table').append(table);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data.......", error);
   }
 }
 
