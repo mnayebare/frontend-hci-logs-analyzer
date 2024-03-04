@@ -3,7 +3,7 @@
 //https://www.digitalocean.com/community/tutorials/nginx-access-logs-error-logs
 async function fetchData() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/v1/nginxlogs");
+    const res = await fetch("http://35.1.40.215:8000/api/v1/nginxlogs");
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status}`);
     }

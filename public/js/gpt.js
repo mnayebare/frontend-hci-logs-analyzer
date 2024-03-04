@@ -16,7 +16,7 @@ async function sendPrompt(prompt) {
 
   // define the variables
   const API_URL = "https://api.openai.com/v1/chat/completions"; //always use the latest version of the API
-  const API_KEY = "";
+  const API_KEY = "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";
 
   const result_button = document.getElementById("result_button");
   const gptRepsonse = document.getElementById("gptResponse");
