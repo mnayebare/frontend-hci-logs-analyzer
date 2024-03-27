@@ -17,7 +17,9 @@ async function furtherInspection() {
 var prompt = document.getElementById("selectedResponse").text;
 console.log(prompt);
 
+    // 
     // define the variables
+    //
     const API_URL = "https://api.openai.com/v1/chat/completions"; //always use the latest version of the API
     const API_KEY = "";
 
@@ -25,22 +27,35 @@ console.log(prompt);
     const gptFurtherResponse = document.getElementById("gptFurtherResponse");
     let controller = null; // Store the AbortController instance
 
+    // 
     // Prompt to send
+    //
     const cot_prompt = "Can you provide a Chain of Thought on how to solve " + prompt + "? " +
         "Without solving the problem just yet, think through this carefully and list systematically and in " +
         "detail all the possible problems that need to be considered before " +
         "you can arrive at the answer that has the highest probability of being correct. ";
 
+    // 
+    // send only the prompt to the API
+    //
+    const send_prompt = prompt;
+
+    // 
     // Disable the generate button and enable the stop button
+    //
     result_button.disabled = true;
     gptFurtherResponse.innerText = "Generating response.................";
 
+    // 
     // Create a new AbortController instance
+    //
     controller = new AbortController();
     const signal = controller.signal;
 
     try {
+        // 
         // Fetch the response from the OpenAI API with the signal from AbortController
+        //
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
@@ -55,8 +70,10 @@ console.log(prompt);
             }),
             signal, // Pass the signal to the fetch request
         });
-
+         
+        //
         // Read the response as a stream of data
+        //
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         gptFurtherResponse.innerText = "";

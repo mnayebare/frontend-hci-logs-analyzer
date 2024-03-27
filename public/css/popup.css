@@ -17,7 +17,27 @@
  body {
     margin: 5px 10px 10px;
   }
-  
+
+/* Code Block Styles */
+pre {
+  white-space: pre-wrap; /* Wrap long lines */
+  overflow-wrap: break-word; /* Break long words */
+  background-color: #f5f5f5; /* Background color */
+  padding: 10px; /* Padding */
+  border: 1px solid #ddd; /* Border */
+  counter-reset: line; /* Initialize line counter */
+}
+
+pre code:before {
+  content: counter(line); /* Display line number */
+  counter-increment: line; /* Increment line counter */
+  display: inline-block; /* Display as inline block */
+  width: 2em; /* Fixed width for line number */
+  padding-right: 1em; /* Add space after line number */
+  text-align: right; /* Right-align line number */
+  color: #999; /* Line number color */
+}
+
   h1 {
     color: #53637D;
     font: 26px/1.2 Helvetica, sans-serif;

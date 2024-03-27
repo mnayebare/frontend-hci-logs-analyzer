@@ -41,32 +41,48 @@
             </div>
         </div>
 
-        <!---creating space for the llm respons-->
-        <h3>LLm response</h3>
-        <div class="bg-white rounded box-shadow  border border-success bg-light" id="gptResponse" >
-    
+
+
+        <div class="row">
+            <!---creating space for the serper text file-->
+            <div class="col bg-white rounded box-shadow  border border-danger bg-light m-3">
+                <h3 class="text-center">Current server config file with error</h3><hr/>
+                <pre> <code id="current_default_nginx_file"> </code>...</pre>
+            </div>
+
+            <!---Load the current conf file-->
+            <div class="col bg-white rounded box-shadow  border border-primary bg-light m-3">
+                <h3 class="text-center">Load the generated serper text file</h3><hr/>
+                <span id="serper_file"> Loading serper file...</span>
+            </div>
+
+            <!---creating load the chatGpt file-->
+            <div class="col bg-white rounded box-shadow  border border-success bg-light m-3">
+                <h3 class="text-center">Load Gpt responses based augmented with serper text file</h3><hr/>
+                <span id="gptResponse">...</span>
+            </div>
+
         </div>
 
-        <!-- futher inspection into down-->
-        <div class="container col-lg" style="width: 100%;">
-            <h3 class="text-center">Further Inspection</h3>
-            <hr />
-            <div class="my-3 p-3 bg-white rounded box-shadow  border border-warning bg-light border" >
-                <a style="cursor: pointer;"  id="gptFurtherResponse" class="whitespace-pre-line hover p-2 d-grid gap-3 "></a>
-            </div>
-            </div>
-
     </div>
-    
+
 </body>
 <script>
-    if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/js/sw.js").then(function (reg) {
-            console.log("Service worker has been registered for scope: " + reg.scope);
-        });
-    }
+    // if (!navigator.serviceWorker.controller) {
+    //  navigator.serviceWorker.register("/js/sw.js").then(function (reg) {
+    //  console.log("Service worker has been registered for scope: " + reg.scope);
+    //});
+    // }
 </script>
 <script src="/js/popup.js"></script>
-<script src="/js/gpt.js"></script>
+<script src="/js/ragapi.js"></script>
+
+<!-- default gpt response-->
+<!-- <script src="/js/gpt.js"></script> -->
 <script src="/js/furtherInspection.js"></script>
+<script src="/js/loadconfigfile.js"></script>
+
+<!--load the serper file code-->
+<script src="/js/loadSerperfile.js"></script>
+
 </html>
