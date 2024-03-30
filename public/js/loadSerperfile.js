@@ -12,7 +12,10 @@ async function loadSerperFile(prompt) {
                 data: prompt
             }),
         });
-
+       
+        //console log prompt sent 
+        console.log("what is prompt", prompt);
+        
         const record = await response.json();
 
         document.getElementById("serper_file").innerText = record.content;

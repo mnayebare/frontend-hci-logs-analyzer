@@ -41,25 +41,36 @@
             </div>
         </div>
 
+        <!---creating space for the selected with similarity --->
 
+        <div class="container col-lg" style="width: 100%;">
+            <h3 class="text-center">Retreived Close Serper Results</h3>
+            <hr />
+            <div class="close_results_data_table">
+            </div>
+        </div>
 
         <div class="row">
             <!---creating space for the serper text file-->
             <div class="col bg-white rounded box-shadow  border border-danger bg-light m-3">
-                <h3 class="text-center">Current server config file with error</h3><hr/>
-                <pre> <code id="current_default_nginx_file"> </code>...</pre>
+                <h3 class="text-center">Current server config file with error</h3>
+                <hr />
+                <pre> <code id="current_default_nginx_file"> </code>Loading default Nginx Conf file...</pre>
             </div>
 
             <!---Load the current conf file-->
             <div class="col bg-white rounded box-shadow  border border-primary bg-light m-3">
-                <h3 class="text-center">Load the generated serper text file</h3><hr/>
-                <span id="serper_file"> Loading serper file...</span>
+                <h3 class="text-center">Load the generated serper text file</h3>
+                <button class="btn btn-primary" id="loadSerperFile" onclick="generateShallowRag()">Load Serper File</button>
+                <hr />
+                <pre id="serper_file"> Loading serper file...</pre>
             </div>
 
             <!---creating load the chatGpt file-->
             <div class="col bg-white rounded box-shadow  border border-success bg-light m-3">
-                <h3 class="text-center">Load Gpt responses based augmented with serper text file</h3><hr/>
-                <span id="gptResponse">...</span>
+                <h3 class="text-center">Load Gpt responses based augmented with serper text file</h3>
+                <hr />
+                <pre id="gptResponse">Generating correct conf file...</pre>
             </div>
 
         </div>
@@ -84,5 +95,8 @@
 
 <!--load the serper file code-->
 <script src="/js/loadSerperfile.js"></script>
+
+<!--load close serper file results-->
+<script src="/js/loadCloseResults.js"></script>
 
 </html>

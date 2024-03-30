@@ -25,7 +25,7 @@ async function generateShallowRag(prompt) {
     const signal = controller.signal;
 
     try {
-        const res = await fetch(API_URL, {
+        const response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -35,49 +35,48 @@ async function generateShallowRag(prompt) {
             }),
             signal,
         });
-        if (!res.ok) {
-            console.log("Error fetching data.......", res);
-            throw new Error(`Failed to fetch data: ${res.status}`);
+        if (!response.ok) {
+            console.log("Error fetching data.......", response);
+            throw new Error(`Failed to fetch data: ${response.status}`);
         }
 
         // Read the response as a stream of data
-        const reader = res.body.getReader();
+        const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
-        const { value } = await reader.read();
+
+        //what is in the decoder
+        console.log("what is in decoder", reader)
 
         gptRepsonse.innerText = "";
-     
-         const chunk = decoder.decode(value);
-         console.log("what is in res", chunk);
-        gptRepsonse.innerText += chunk;
 
-        // while (true) {
-        //     const { done, value } = await reader.read();
-        //     if (done) {
-        //         break;
-        //     }
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+                break;
+            }
+            // Massage and parse the chunk of data
+            const chunk = decoder.decode(value);
+            const lines = chunk.split("\n");
+            const parsedLines = lines
+                .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
+                .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
+                .map((line) => JSON.parse(line)); // Parse the JSON string
 
-        //     //Get the value of the data this read has no element of done.
-        //     const chunk = decoder.decode(value);
-        //     console.log("what is in", typeof (chunk));
-
-        //     const lines = chunk.split("\n");
-        //     console.log("Give me chuck after the split", lines);
-
-        //     const parsedLines = lines
-        //         .map((line) => line.replace(/^data: /, "").trim())
-        //         .filter((line) => line !== "" && line !== "[DONE]")
-        //         .map((line) => JSON.parse(line));
-
-        //     console.log("what is being mapped", parsedLines);
-
-        //     gptRepsonse.innerText += parsedLines;
-        // }
-
-        const record = await res.json();
-        const log_data = record.data;
-
+            for (const parsedLine of parsedLines) {
+                console.log("what is in parsedLines", parsedLine)
+                gptRepsonse.innerText += parsedLine.generated_text;
+            }
+        }
     } catch (error) {
-        console.error("Error fetching data.......", error);
+        // Handle fetch request errors
+        if (signal.aborted) {
+            gptRepsonse.innerText = "Request aborted.";
+        } else {
+            console.error("Error:", error);
+            gptRepsonse.innerText = "Error occurred while generating.";
+        }
+    } finally {
+        result_button.disabled = false;
+        controller = null; // Reset the AbortController instance
     }
-}
+};

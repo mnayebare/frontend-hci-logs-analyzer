@@ -10,11 +10,9 @@ async function fetchData() {
     
     const record = await res.json();
     const log_data = record.data;
-    const create_serper_file="create serper file"
-    const create_prompt="create prompt"
+    const create_serper_file="scrap serper API with this error message"
 
-
-    let table = "<table class='table table-hover'><thead class='thead-dark'><tr><td>Process_ID</td><td>Timestamp</td><td>Threat Level</td><td>Error Message</td><td> create serper file </td> <td>create prompt</td></tr></thead>";
+    let table = "<table class='table table-hover'><thead class='thead-dark'><tr><td>Process_ID</td><td>Timestamp</td><td>Threat Level</td><td>Error Message</td><td> create serper file </td></tr></thead>";
 
     for (let i = 0; i < log_data.length; i++) {
       table += "<tr>";
@@ -22,9 +20,7 @@ async function fetchData() {
       table += "<td class='result_link'>" + log_data[i].timestamp + "</td>";
       table += "<td class='result_link'>" + log_data[i].log_level + "</td>";
       table += "<td class='result_link'>" + log_data[i].error_message.replace('"', '\\"') + "</td>";
-      table += "<td><button id='result_button' class='border-primary' onclick='loadSerperFile(\"" + log_data[i].error_message.replace('"', '\\"') + "\")'>" + create_serper_file + "</button></td>";
-      table += "<td><button id='result_button' class='border-success' onclick='generateShallowRag(\"" + log_data[i].error_message.replace('"', '\\"') + "\")'>" + create_prompt + "</button></td>";
-
+      table += "<td><button id='result_button' class='border-primary' onclick='loadSerperFile(\"" + log_data[i].error_message.replace('"', '\\"') + "\"); fetchCloseSerperData();'>" + create_serper_file + "</button></td>"
       table += "</tr>";
     }
 
