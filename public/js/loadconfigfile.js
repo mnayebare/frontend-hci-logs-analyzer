@@ -10,7 +10,7 @@ async function loadConfigFile() {
       
       const record = await res.json();
 
-      document.getElementById("current_default_nginx_file").innerText = record.content;
+      document.getElementById("editor").innerText = record.content;
 
     } catch (error) {
       console.error("Error fetching data.......", error);
