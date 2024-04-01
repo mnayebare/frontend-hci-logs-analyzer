@@ -55,7 +55,7 @@
             <div class="col bg-white rounded box-shadow  border border-danger bg-light m-3">
                 <h3 class="text-center">Current server config file with error</h3>
                 <hr />
-                <div id="editor">  Loading default Nginx Conf file... </div>
+                <div id="editor"> Loading default Nginx Conf file... </div>
             </div>
 
             <!---Load the current conf file --------->
@@ -107,7 +107,8 @@
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
-    editor.session.setMode("ace/mode/javascript");
+    editor.session.setMode("ace/mode/nginx");
+
 </script>
 
 </html>
