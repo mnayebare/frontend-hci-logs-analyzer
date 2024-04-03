@@ -19,7 +19,7 @@ async function sendPrompt(prompt) {
   // const API_KEY =;
 
   const result_button = document.getElementById("result_button");
-  const gptRepsonse = document.getElementById("gptResponse");
+  const gptRepsonse = document.getElementById("editor2");
   let controller = null; // Store the AbortController instance
 
   // Prompt to send

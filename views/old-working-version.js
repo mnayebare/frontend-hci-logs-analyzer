@@ -2,17 +2,25 @@
 <html>
 
 <head>
-    <title>Analyzing Nginx Error Logs LLMs</title>
+    <title>Analyzing Nginx Error Logs</title>
     <meta charset="utf-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link href="/css/popup.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" type="text/javascript"
-        charset="utf-8"></script>
-    </style>
+       <link href="/css/popup.css" rel="stylesheet" />
+       <style type="text/css" media="screen">
+          #editor { 
+              position: relative;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+          }
+      </style>
 </head>
 
 <body>
+
+
     <div class="container">
 
         <!---creating space for the simple navigation bar-->
@@ -48,42 +56,41 @@
             </div>
         </div>
 
+        <div class="row">
+          <div id="editor">
+           
+              
+             </div>
+            <!---creating space for the serper text file ------->
+            <div class="col bg-white bg-light m-3">
+                <h3 class="text-center">Current server config file with error</h3>
+                <hr />
+                <div id="editofr"> Loading default Nginx Conf file... </div>
 
-        <!---creating space for the serper text file ------->
-        <div class="col bg-white rounded box-shadow  border border-info  bg-light m-3">
-            <h3 class="text-center">Current default server config file with error</h3>
-            <hr />
-            <div id="editor" style="height: 300px; width: auto;"></div>
-        </div>
+       
+              
+          
+            </div>
 
-        <!---load the current conf file --------->
-        <div class="col bg-white rounded box-shadow  border border-primary bg-light m-3">
-            <h3 class="text-center">Load the generated serper code file</h3>
-            <hr />
-            <pre id="serper_file"> Loading serper file...</pre>
-        </div>
+            <!---Load the current conf file --------->
+            <div class="col bg-white rounded box-shadow  border border-primary bg-light m-3">
+                <h3 class="text-center">Load the generated serper text file</h3>
+                <button class="btn btn-primary" id="loadSerperFile" onclick="generateShallowRag()">Load Serper
+                    File</button>
+                <hr />
+                <pre id="serper_file"> Loading serper file...</pre>
+            </div>
 
-        <!---creating load the chatGpt file ----->
-        <div class="col bg-white rounded box-shadow  border border-success  m-3">
-            <button type="button" id="loadSerperFile" class="btn btn-secondary" onclick="generateShallowRag()"
-                data-mdb-ripple-init>Load LLM Generated File</button>
-            <h3 class="text-center">Load GPT based serper augmented response </h3>
-            <hr />
-            <pre id="editor2">Generating correct conf file...</pre>
+            <!---creating load the chatGpt file ----->
+            <div class="col bg-white rounded box-shadow  border border-success bg-light m-3">
+                <h3 class="text-center">Load Gpt responses based augmented with serper text file</h3>
+                <hr />
+                <pre id="gptResponse">Generating correct conf file...</pre>
+            </div>
+
         </div>
 
     </div>
-
-    <!---get the footer out of the way-->
-
-    <footer class="bg-body-tertiary text-center text-lg-start">
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2024 Copyright:
-            <a class="text-body" href="#">Analyzing Nginx Error Logs with LLMs </a>
-        </div>
-        <!-- Copyright -->
-    </footer>
 
 </body>
 <script>
@@ -96,10 +103,9 @@
 <script src="/js/popup.js"></script>
 <script src="/js/ragapi.js"></script>
 
-<!----- default gpt response -->
+<!-- default gpt response -->
 <!--  <script src="/js/gpt.js"></script> -->
 <script src="/js/furtherInspection.js"></script>
-
 <script src="/js/loadconfigfile.js"></script>
 
 <!-- load the serper file code -->
@@ -116,12 +122,6 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/javascript");  
-
-    // load another ace js editor
-    var editor2 = ace.edit("editor2");
-    editor2.setTheme("ace/theme/twilight");
-    editor2.session.setMode("ace/mode/javascript");  
-
 </script>
 
-</html>
+</html> 

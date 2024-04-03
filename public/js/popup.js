@@ -20,7 +20,7 @@ async function fetchData() {
       table += "<td class='result_link'>" + log_data[i].timestamp + "</td>";
       table += "<td class='result_link'>" + log_data[i].log_level + "</td>";
       table += "<td class='result_link'>" + log_data[i].error_message.replace('"', '\\"') + "</td>";
-      table += "<td><button id='result_button' class='border-primary' onclick='loadSerperFile(\"" + log_data[i].error_message.replace('"', '\\"') + "\"); fetchCloseSerperData();'>" + create_serper_file + "</button></td>"
+      table += "<td><button id='result_button' class='btn btn-secondary border-primary' onclick='loadSerperFile(\"" + log_data[i].error_message.replace('"', '\\"') + "\"); fetchCloseSerperData();'>" + create_serper_file + "</button></td>"
       table += "</tr>";
     }
 
