@@ -19,6 +19,7 @@ async function loadSerperFile(prompt) {
         const record = await response.json();
 
         document.getElementById("serper_file").innerText = record.content;
+     
     }
     catch (error) {
         console.error("Error fetching data.......", error);

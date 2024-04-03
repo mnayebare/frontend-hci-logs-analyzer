@@ -1,6 +1,6 @@
-// This file is used to fetch the data from the API and display it in the popup.html file
-// under the linux system you find the logs in the /var/log/nginx/error.log
-//https://www.digitalocean.com/community/tutorials/nginx-access-logs-error-logs
+// // This file is used to fetch the data from the API and display it in the popup.html file
+// // under the linux system you find the logs in the /var/log/nginx/error.log
+// //https://www.digitalocean.com/community/tutorials/nginx-access-logs-error-logs
 async function loadConfigFile() {
     try {
       const res = await fetch("http://127.0.0.1:8000/api/v1/nginxconfig");
@@ -10,7 +10,13 @@ async function loadConfigFile() {
       
       const record = await res.json();
 
-      document.getElementById("editor").innerText = record.content;
+    //  document.getElementById("editor").inner = record.content;
+      // $('#editor').append(record.content);
+      // const data = record;
+      // $('#editor').append(record.content);
+      $('#editor').text(record.content);
+
+    // console.log(typeof(record.content)) ;
 
     } catch (error) {
       console.error("Error fetching data.......", error);
@@ -19,4 +25,3 @@ async function loadConfigFile() {
   
   // Call fetchData function to fetch and display data
   loadConfigFile();
-  
