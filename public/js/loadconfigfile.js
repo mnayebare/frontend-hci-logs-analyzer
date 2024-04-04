@@ -4,7 +4,7 @@
 
     // Function to dynamically set the code in the editor
     function loadDynamicCode(newCode) {
-      editor.setValue(newCode, -1); // -1 moves the cursor to the start
+      editor1.setValue(newCode, -1); // -1 moves the cursor to the start
   }
 
   // Example of fetching code from a URL and loading it into the editor
@@ -17,7 +17,6 @@
               return response.json();
           })
           .then(code => {
-              console.log('Fetched code:', code["content"]);
               loadDynamicCode(code.content);
           })
           .catch(error => {
